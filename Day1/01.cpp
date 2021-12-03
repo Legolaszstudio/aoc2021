@@ -5,18 +5,16 @@
 #include <fstream>
 #include <deque>
 
-int main()
-{
+int main() {
 	std::string line;
 	std::ifstream file("01.txt");
-	
+
 	int i = 0;
 	int numBefore{};
 	int counter = 0;
 	int sumCounter = 0;
 	std::deque<int> numbers = {};
-	while (std::getline(file, line))
-	{
+	while (std::getline(file, line)) {
 		if (i == 0) {
 			line = line.substr(3);
 		}
@@ -34,15 +32,12 @@ int main()
 		if (i > 2) {
 			int currentSum = 0;
 			int sumBefore = 0;
-			for (size_t index = 0; index < 4; index++)
-			{
+			for (size_t index = 0; index < 4; index++) {
 				if (index == 3) {
 					currentSum += numbers[index];
-				}
-				else if (index == 0) {
+				} else if (index == 0) {
 					sumBefore += numbers[index];
-				}
-				else {
+				} else {
 					currentSum += numbers[index];
 					sumBefore += numbers[index];
 				}

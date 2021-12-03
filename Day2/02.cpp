@@ -6,15 +6,13 @@
 #include <vector>
 #include "02_2.h"
 
-int main()
-{
+int main() {
 	std::string line;
 	std::ifstream file("02.txt");
 	std::vector<int> position = { 0, 0 };
 
-	while (std::getline(file, line))
-	{
-		std::string instruction = line.substr(0,line.find(" "));
+	while (std::getline(file, line)) {
+		std::string instruction = line.substr(0, line.find(" "));
 		int instrAmplitude = std::stoi(line.substr(line.find(" ")));
 		std::cout << instruction << " " << instrAmplitude << std::endl;
 
