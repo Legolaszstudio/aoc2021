@@ -1,8 +1,8 @@
-#include <string>
-
-class BingoItem {
-	BingoItem(bool drawn, int num);
-	public:
-		bool drawn = false;
-		int num = 0;
+#ifndef BingoItem_H
+#define BingoItem_H
+struct BingoItem {
+	int num;
+	int board;
+	bool drawn;
 };
+#endif

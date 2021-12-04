@@ -5,11 +5,8 @@
 #include <deque>
 #include <vector>
 #include <sstream>
-
-struct BingoItem {
-	int num;
-	bool drawn;
-};
+#include "classes.h"
+#include "04_02.h"
 
 /// <summary>
 /// Changes drawn to true
@@ -89,6 +86,7 @@ int main() {
 
 	std::deque<int> drawnNumbers = {};
 	std::deque<std::deque<std::deque<BingoItem>>> boardMatrix = {};
+	std::deque<std::deque<std::deque<BingoItem>>> originalBoardMatrix = {};
 	// boardMatrix[boardnum][row][column]
 
 	int index = 0;
@@ -111,6 +109,7 @@ int main() {
 			std::cout << std::endl << std::endl;
 		} else if (index != 0) {
 			boardMatrix[boardMatrix.size() - 1].push_back({});
+			int boardNum = boardMatrix.size() - 1;
 			std::string lineNum;
 			std::stringstream X(line);
 			while (std::getline(X, lineNum, ' ')) {
@@ -118,6 +117,7 @@ int main() {
 					BingoItem item;
 					item.drawn = false;
 					item.num = std::stoi(lineNum);
+					item.board = boardNum;
 					boardMatrix[boardMatrix.size() - 1][boardLine].push_back(item);
 				}
 				std::cout << lineNum << " ";
@@ -127,11 +127,12 @@ int main() {
 		}
 		index++;
 	}
+	originalBoardMatrix = boardMatrix;
 
 	// Start drawing numbers
 	int winningBoard = -1;
 	int drawIndex = -1;
-	while (drawIndex < (int)(drawnNumbers.size()) && winningBoard == -1) {
+	while (drawIndex < (int)(drawnNumbers.size() - 1) && winningBoard == -1) {
 		drawIndex++;
 		boardMatrix = drawNumber(boardMatrix, drawnNumbers[drawIndex]);
 		winningBoard = hasWinner(boardMatrix);
@@ -142,7 +143,7 @@ int main() {
 		std::cout << "Error in calc, no winner" << std::endl;
 		return 1;
 	} else {
-		std::cout << winningBoard + 1 << " board has won" << std::endl;
+		std::cout << "Board " << winningBoard + 1 << " has won" << std::endl;
 		int unmarkedSum = sumUnmarkedBoard(boardMatrix[winningBoard]);
 		std::cout << unmarkedSum << " is the sum of the nondrawn numbers" << std::endl;
 		int winningDrawn = drawnNumbers[drawIndex];
@@ -150,5 +151,8 @@ int main() {
 		std::cout << "Final answer is: " << winningDrawn * unmarkedSum << std::endl;
 	}
 
+	std::cout << "To run second part press enter:" << std::endl << std::endl;
+	getchar();
+	partTwo(originalBoardMatrix, drawnNumbers);
 	return 0;
 }
