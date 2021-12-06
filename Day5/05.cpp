@@ -165,7 +165,7 @@ int main() {
 	std::cout << "Final result: " << overlaps << std::endl << std::endl;
 
 	std::cout << "To run second part press enter:" << std::endl << std::endl;
-	//getchar();
+	getchar();
 
 	partTwo(inputVectors, solveMatrix);
 	return 0;
