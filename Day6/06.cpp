@@ -59,10 +59,6 @@ void partTwo(std::vector<int> inp) {
 
 		fishes[6] += addFishCount;
 		fishes[8] = addFishCount;
-
-		if (i == 180) {
-			std::cout << "alma";
-		}
 	}
 
 	std::cout << "After " << 256 << " days there will be ";
