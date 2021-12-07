@@ -48,17 +48,9 @@ void partTwo(std::vector<int> inp) {
 	for (int i = 1; i <= 256; i++) {
 		long long addFishCount = fishes[0];
 
-		fishes[0] = fishes[1];
-		fishes[1] = fishes[2];
-		fishes[2] = fishes[3];
-		fishes[3] = fishes[4];
-		fishes[4] = fishes[5];
-		fishes[5] = fishes[6];
-		fishes[6] = fishes[7];
-		fishes[7] = fishes[8];
+		std::rotate(fishes.begin(), fishes.begin() + 1, fishes.end());
 
 		fishes[6] += addFishCount;
-		fishes[8] = addFishCount;
 	}
 
 	std::cout << "After " << 256 << " days there will be ";
