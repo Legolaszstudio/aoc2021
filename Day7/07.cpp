@@ -3,18 +3,12 @@
 #include <deque>
 #include <vector>
 #include <iostream>
+#include<cmath>
 
 void partTwo(std::vector<int> crabs, int maxPos);
 
-// There is probably a faster way, isn't there?
-// Like caching the already calculated results and starting from there?
-// TODO: If I have time I will fix this :)
 int sumX(int until) {
-	int sum = 0;
-	for (int i = 0; i <= until; i++) {
-		sum += i;
-	}
-	return sum;
+	return (std::pow(until, 2) + until) / 2;
 }
 
 int main() {
