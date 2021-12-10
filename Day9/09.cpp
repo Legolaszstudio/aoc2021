@@ -4,6 +4,7 @@
 #include <deque>
 #include <vector>
 #include <iostream>
+#include "09_2.h"
 
 int main() {
 	std::string line;
@@ -51,5 +52,8 @@ int main() {
 		}
 	}
 	std::cout << std::endl << "Final risk level: " << riskLevel;
+	std::cout << "To run second part press enter:" << std::endl << std::endl;
+	getchar();
+	partTwo(inputMatrix);
 	return 0;
 }
