@@ -51,7 +51,7 @@ int main() {
 			riskLevel += currentNum + 1;
 		}
 	}
-	std::cout << std::endl << "Final risk level: " << riskLevel;
+	std::cout << std::endl << "Final risk level: " << riskLevel << std::endl;
 	std::cout << "To run second part press enter:" << std::endl << std::endl;
 	getchar();
 	partTwo(inputMatrix);
