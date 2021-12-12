@@ -35,11 +35,14 @@ int main() {
 		}
 	}
 	std::vector<std::vector<Octopus>> workingMatrix = originalInput;
-
-	for (int step = 0; step < 100; step++) {
+	
+	int octopusCount = workingMatrix.size() * workingMatrix[0].size();
+	long long flashesBefore = 0;
+	int step = 0;
+	while (true) {
 		for (int i = 0; i < workingMatrix.size(); i++) {
 			for (int j = 0; j < workingMatrix[i].size(); j++) {
-				if(!workingMatrix[i][j].flashed) workingMatrix[i][j].num += 1;
+				if (!workingMatrix[i][j].flashed) workingMatrix[i][j].num += 1;
 				if (workingMatrix[i][j].num == 10) {
 					workingMatrix[i][j].num = 0;
 					workingMatrix[i][j].flashed = true;
@@ -54,10 +57,22 @@ int main() {
 				workingMatrix[i][j].flashed = false;
 			}
 		}
+		if (step == 99) {
+			std::cout << "There were a total of " << flashCount << " flashes at step 100" << std::endl;
+		}
+		if (step == 194) {
+			std::cout << "";
+		}
+		if ((flashCount - flashesBefore) == octopusCount) {
+			std::cout << "All octopuses flashed at once at step " << step + 1 << std::endl;
+			//Considering that flashing at once happens after a 100 we break out
+			break;
+		}
+		flashesBefore = flashCount;
 		//std::cout << "There were a total of " << flashCount << " flashes so far" << std::endl;
 		//std::cout << std::endl;
+		step++;
 	}
-	std::cout << "There were a total of " << flashCount << " flashes." << std::endl;
 	return 0;
 }
 
