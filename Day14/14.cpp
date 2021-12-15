@@ -75,6 +75,11 @@ long long calculateSolutionPartTwo(std::unordered_map<std::string, long long> in
 	for (const auto& pair : inp) {
 		charCount[pair.first[0]] += pair.second;
 	}
+	auto it = --inp.end();
+	auto lastChar = (*it);
+	charCount[lastChar.first[1]] += 1;
+
+
 	long long smallest = 0xfffffffffffffff;
 	long long biggest = 0;
 	for (const auto& item : charCount) {
@@ -85,7 +90,7 @@ long long calculateSolutionPartTwo(std::unordered_map<std::string, long long> in
 			biggest = item.second;
 		}
 	}
-	return (biggest - smallest) + 1;
+	return biggest - smallest;
 }
 
 void partTwo(std::string polymer, std::unordered_map<std::string, std::string> bindings) {
